@@ -6,8 +6,8 @@ This producer allows you to stream events from EventRelay and process them using
 
 ## Installation
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `` to your list of dependencies in `mix.exs`:
+If [available in Hex](https://hex.pm/packages/offbroadway_eventrelay), the package can be installed
+by adding `offbroadway_eventrelay` to your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
@@ -268,6 +268,6 @@ data to/from. Broadway comes with telemetry, so you can measure your
 pipeline and help ensure your changes are effective.
 
 Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at <https://hexdocs.pm/offbroadway_eventrelay>.
+and published on [HexDocs](https://hexdocs.pm). The docs can
+be found at <https://hexdocs.pm/offbroadway_eventrelay/0.1.0>.
 
