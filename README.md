@@ -196,12 +196,12 @@ Now the Broadway pipeline should be started when your application starts. Also, 
 pipeline has any dependency (for example, it needs to talk to the database), make sure that
 it is listed *after* its dependencies in the supervision tree.
 
-If you followed the previous section about setting the project with `gcloud`, you can now test the
+If you followed the previous section about configuring EventRelay, you can now test the
 the pipeline. In one terminal tab start the application:
 
     $ iex -S mix
 
-And in another tab, send a couple of test messages to EventRelay:
+And in another tab, send a couple of test events to EventRelay:
 
     $ grpcurl -H "Authorization: Bearer {token}" -key /path/to/api_key_keyfile.pem -cert /path/to/api_key_certfile.pem -cacert /path/to/cacertfile.pem -proto event_relay.proto -d '{"topic": "users", "durable": true, "events": [{"name": "user.created", "data": "{\"person\": {\"first_name\": \"Bill\", \"last_name\": \"Roberts\", \"twitter_url\": \"https://twitter.com/billroberts\", \"uuid\": \"6131e043-52eb-4112-82f0-2817149b0e22\"}}", "source": "MyApp", "context": {"ip_address": "127.0.0.1"}}]}' localhost:50051 eventrelay.Events.PublishEvents
 
