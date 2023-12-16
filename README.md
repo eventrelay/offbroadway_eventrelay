@@ -37,13 +37,20 @@ If you are just getting familiar with EventRelay, refer to [the wiki](https://gi
 to get started. 
 
 If you have an existing EventRelay instance, topic, subscription, and API Key, you can skip [step
-1](#configure-eventrelay) and jump to [Start a new project](#start-a-new-project)
+1](#configure-eventrelay) and jump to [Start a new project](#starting-a-new-project)
 section.
 
 ## Configure EventRelay
 
 You will first need a running instance of EventRelay. If you don't have one see the 
 [Getting Started](https://github.com/eventrelay/eventrelay/wiki/Getting-Started) guide.
+
+Login to EventRelay's web [UI](http://localhost:9000/users/log_in)
+
+The login credentials can be found in the [seeds file](https://github.com/eventrelay/eventrelay/blob/main/priv/repo/seeds.exs#L24).
+
+    email: "user@example.com"
+    password: "password123!@"
 
 Create a new topic:
 
