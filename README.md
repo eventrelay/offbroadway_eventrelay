@@ -1,6 +1,7 @@
 # Offbroadway EventRelay Producer
 
-This producer allows you to stream events from EventRelay and process them using Broadway.
+This producer allows you to stream events from EventRelay and process them using Broadway. It still needs 
+some tender loving care to get it to a place where you could use it in production. So use with caution. 
 
 **A lot of inspiration, code, and documentation been borrowed from the [Google Cloud Pub/Sub Producer](https://github.com/dashbitco/broadway_cloud_pub_sub)**
 
