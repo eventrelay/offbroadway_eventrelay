@@ -119,8 +119,7 @@ Broadway pipeline.
                subscription_id: "{subscription_id}",
                host: "localhost",
                port: "50051",
-               token:
-                 "{token}", # Part of API Key
+               token: "{token}", # Part of API Key
                certfile: "/path/to/api_key_certfile.pem", # Part of API Key
                keyfile: "/path/to/api_key_keyfile.pem", # Part of API Key
                cacertfile: "/path/to/cacertfile.pem"} # From initial EventRelay installation
