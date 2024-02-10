@@ -203,6 +203,11 @@ defmodule Offbroadway.EventRelay.Producer do
     {:noreply, [], state}
   end
 
+  @impl true
+  def handle_demand(incoming_demand, %{demand: demand} = state) do
+    handle_pull_events(%{state | demand: demand + incoming_demand})
+  end
+
   defp handle_pull_events(%{pull_timer: nil, demand: demand, pull_task: nil} = state)
        when demand > 0 do
     task = pull_events_from_event_relay(state, demand)
@@ -223,32 +228,31 @@ defmodule Offbroadway.EventRelay.Producer do
     subscription_id = producer_opts[:subscription_id]
 
     Task.async(fn ->
-      case Client.pull_queued_events(channel, subscription_id, total_demand) do
-        {:ok, result} ->
-          Enum.map(result.events, fn event ->
-            %Message{
-              data: event,
-              acknowledger: Broadway.NoopAcknowledger.init()
-            }
-          end)
-
-        error ->
-          Logger.error(
-            "Offbroadway.EventRelay.Producer.pull_events_from_event_relay error=#{inspect(error)}"
-          )
-
-          []
-      end
+      channel
+      |> Client.pull_queued_events(subscription_id, total_demand)
+      |> handle_pull_queued_events()
     end)
-  end
-
-  @impl true
-  def handle_demand(incoming_demand, %{demand: demand} = state) do
-    handle_pull_events(%{state | demand: demand + incoming_demand})
   end
 
   def schedule_next_pull(pull_interval) do
     Logger.debug("Offbroadway.EventRelay.Producer.schedule_next_pull(#{inspect(pull_interval)})")
     Process.send_after(self(), :pull_events, pull_interval)
+  end
+
+  def handle_pull_queued_events({:ok, result}) do
+    Enum.map(result.events, fn event ->
+      %Message{
+        data: event,
+        acknowledger: Broadway.NoopAcknowledger.init()
+      }
+    end)
+  end
+
+  def handle_pull_queued_events(error) do
+    Logger.error(
+      "Offbroadway.EventRelay.Producer.pull_events_from_event_relay error=#{inspect(error)}"
+    )
+
+    []
   end
 end
