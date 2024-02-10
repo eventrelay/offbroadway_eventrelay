@@ -33,7 +33,15 @@ defmodule OffbroadwayEventRelay.MixProject do
       {:broadway, "~> 1.0"},
       {:grpc, "~> 0.7.0"},
       {:protobuf, "~> 0.11"},
-      {:ex_doc, ">= 0.0.0", only: :dev, runtime: false}
+      {:ex_doc, ">= 0.0.0", only: :dev, runtime: false},
+      # Code Quality
+      {:ex_check, "~> 0.14.0", only: [:dev], runtime: false},
+      {:credo, ">= 0.0.0", only: [:dev], runtime: false},
+      {:dialyxir, ">= 0.0.0", only: [:dev], runtime: false},
+      {:doctor, ">= 0.0.0", only: [:dev], runtime: false},
+      {:sobelow, ">= 0.0.0", only: [:dev], runtime: false},
+      {:mix_audit, ">= 0.0.0", only: [:dev], runtime: false},
+      {:credo_ignore_file_plugin, "~> 0.1.0", only: [:dev]}
     ]
   end
 
