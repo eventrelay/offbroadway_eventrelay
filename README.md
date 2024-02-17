@@ -13,14 +13,14 @@ by adding `offbroadway_eventrelay` to your list of dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:offbroadway_eventrelay, "~> 0.1.0"}
+    {:offbroadway_eventrelay, "~> 0.2.0"}
   ]
 end
 ```
 
 ## Guide
 
-EventRelay is a self-hosted real-time event streaming service. This guide assumes
+EventRelay is a self-hosted real-time event streaming application. This guide assumes
 that you have EventRelay installed locally and that it can be accessed on localhost.
 
 ## Getting Started
@@ -90,7 +90,7 @@ Add `:offbroadway_eventrelay` to the list of dependencies in `mix.exs`
     defp deps() do
       [
         ...
-        {:offbroadway_eventrelay, "~> 0.1"},
+        {:offbroadway_eventrelay, "~> 0.2"},
       ]
     end
 
@@ -183,7 +183,7 @@ For more information, see `c:Broadway.handle_message/3` and `c:Broadway.handle_b
 ## Run the Broadway pipeline
 
 To run your `Broadway` pipeline, you need to add it as a child in a supervision tree. Most
-applications have a supervision tree defined at `lib/my_app/application.ex`. You can add Broadway
+applications have a supervision tree def2ned at `lib/my_app/application.ex`. You can add Broadway
 as a child to a supervisor as follows:
 
     children = [
@@ -270,5 +270,5 @@ pipeline and help ensure your changes are effective.
 
 Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
 and published on [HexDocs](https://hexdocs.pm). The docs can
-be found at <https://hexdocs.pm/offbroadway_eventrelay/0.1.0>.
+be found at <https://hexdocs.pm/offbroadway_eventrelay>.
 
