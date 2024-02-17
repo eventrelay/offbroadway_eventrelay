@@ -1,6 +1,6 @@
 defmodule Offbroadway.EventRelay.Producer do
   @moduledoc """
-  A GenStage producer that continuously receives messages from an EventRelay Subscription/Topic 
+  A GenStage producer that continuously receives messages from an EventRelay Destination/Topic 
 
   For a quick getting started on using Broadway with EventRelay, please see
   the [EventRelay Guide](https://hexdocs.pm/).
@@ -18,7 +18,7 @@ defmodule Offbroadway.EventRelay.Producer do
             producer: [
               module:
                 {Offbroadway.EventRelay.Producer,
-                 subscription_id: "...",
+                 destination_id: "...",
                  host: "localhost",
                  port: "50051",
                  token: "...",
@@ -39,7 +39,7 @@ defmodule Offbroadway.EventRelay.Producer do
       end
 
   The above configuration will set up a producer that continuously pulls
-  events from the configured subscription and sends them downstream.
+  events from the configured destination and sends them downstream.
 
   ## Options
 
@@ -55,8 +55,8 @@ defmodule Offbroadway.EventRelay.Producer do
   ## Acknowledgements
 
   This producer uses the `PullQueuedEventsRequest` in EventRelay which locks
-  an event for a specific subscription when it is pulled from the system. 
-  That means any client that pulls events for that subscription in the 
+  an event for a specific destination when it is pulled from the system. 
+  That means any client that pulls events for that destination in the 
   future will not receive that event.  
 
   Dealing with failures it is up to the user of this producer to implement 
@@ -83,7 +83,7 @@ defmodule Offbroadway.EventRelay.Producer do
             producer: [
               module:
                 {Offbroadway.EventRelay.Producer,
-                 subscription_id: "...",
+                 destination_id: "...",
                  host: "localhost",
                  port: "50051",
                  token: "...",
@@ -225,11 +225,11 @@ defmodule Offbroadway.EventRelay.Producer do
     )
 
     %{channel: channel, producer_opts: producer_opts} = state
-    subscription_id = producer_opts[:subscription_id]
+    destination_id = producer_opts[:destination_id]
 
     Task.async(fn ->
       channel
-      |> Client.pull_queued_events(subscription_id, total_demand)
+      |> Client.pull_queued_events(destination_id, total_demand)
       |> handle_pull_queued_events()
     end)
   end

@@ -1,8 +1,6 @@
 defmodule Offbroadway.EventRelay.Options do
   @moduledoc false
 
-  @default_max_number_of_events 50
-
   @default_pull_interval 5_000
 
   @default_pull_timeout :infinity
@@ -10,14 +8,11 @@ defmodule Offbroadway.EventRelay.Options do
   definition = [
     # Handled by Broadway.
     broadway: [type: :any, doc: false],
-    subscription_id: [
-      type: {:custom, __MODULE__, :type_non_empty_string, [[{:name, :subscription_id}]]},
+    destination_id: [
+      type: {:custom, __MODULE__, :type_non_empty_string, [[{:name, :destination_id}]]},
       required: true,
       doc: """
-      The name of the subscription, including the project.
-      For example, if you project is named `"my-project"` and your
-      subscription is named `"my-subscription"`, then your subscription
-      name is `"projects/my-project/subscriptions/my-subscription"`.
+      The ID of the destination
       """
     ],
     host: [
@@ -40,7 +35,7 @@ defmodule Offbroadway.EventRelay.Options do
       type: {:custom, __MODULE__, :type_non_empty_string, [[{:name, :token}]]},
       required: false,
       doc: """
-      An ApiKey token that has access to the EventRelay Subscription
+      An ApiKey token that has access to the EventRelay destination
       """
     ],
     cacertfile: [
@@ -63,11 +58,6 @@ defmodule Offbroadway.EventRelay.Options do
       doc: """
       Path to a PEM formatted client key file
       """
-    ],
-    max_number_of_events: [
-      doc: "The maximum number of events to be fetched per request.",
-      type: :pos_integer,
-      default: @default_max_number_of_events
     ],
     pull_interval: [
       type: :integer,

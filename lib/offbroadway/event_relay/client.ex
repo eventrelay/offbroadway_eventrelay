@@ -45,9 +45,9 @@ defmodule Offbroadway.EventRelay.Client do
     GRPC.Stub.connect("#{host}:#{port}", grpc_opts)
   end
 
-  def pull_queued_events(channel, subscription_id, batch_size) do
+  def pull_queued_events(channel, destination_id, batch_size) do
     request = %ERWeb.Grpc.Eventrelay.PullQueuedEventsRequest{
-      subscription_id: subscription_id,
+      destination_id: destination_id,
       batch_size: batch_size
     }
 

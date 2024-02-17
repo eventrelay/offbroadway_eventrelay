@@ -37,7 +37,7 @@ In order to use Broadway with EventRelay you need to:
 If you are just getting familiar with EventRelay, refer to [the wiki](https://github.com/eventrelay/eventrelay/wiki)
 to get started. 
 
-If you have an existing EventRelay instance, topic, subscription, and API Key, you can skip [step
+If you have an existing EventRelay instance, topic, destination, and API Key, you can skip [step
 1](#configure-eventrelay) and jump to [Start a new project](#starting-a-new-project)
 section.
 
@@ -57,13 +57,13 @@ Create a new topic:
 
 Name: users
 
-Create a new subscription:
+Create a new destination:
 
 Name: Users Stream
 Type: api
 Topic: users
 
-You will need the subscription ID later to configure the Broadway Producer.
+You will need the destination ID later to configure the Broadway Producer.
 
 Create an API Key:
 
@@ -117,7 +117,7 @@ Broadway pipeline.
           producer: [
             module:
               {Offbroadway.EventRelay.Producer,
-               subscription_id: "{subscription_id}",
+               destination_id: "{destination_id}",
                host: "localhost",
                port: "50051",
                token: "{token}", # Part of API Key
